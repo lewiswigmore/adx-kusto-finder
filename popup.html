@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kusto Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      font-size: 0.75rem;
+    }
+
+    #search-query {
+      width: 300px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    #search-button {
+      background-color: #fff;
+      color: #5e5e5e;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kusto Finder</h1>
+  <input type="text" id="search-query" placeholder="Enter search term...">
+  <button id="search-button">Search</button>
+  <script src="popup.js"></script>
+</body>
+</html>
