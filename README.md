@@ -1,6 +1,6 @@
 # Kusto Finder
 
-Kusto Finder is an Edge extension designed to enhance your browsing experience by providing a powerful search functionality. It allows you to search for specific terms within the content of your open tabs and highlights the found text for easy visibility.
+**WIP** | Kusto Finder is an Edge extension designed to enhance the ADX experience by providing the search functionality. It allows you to search for specific terms within the content of your open tabs and highlights the found text for easy visibility.
 
 ## Installation
 
@@ -13,15 +13,11 @@ To install Kusto Finder as a custom extension in Edge, follow these steps:
 
 ## Usage
 
-After installing the extension, you can use it by clicking on the Kusto Finder icon in the Edge toolbar. Enter your search term in the input box and click the search button. The extension will search for the term in your open tabs and display the results in a list. Click on a result to navigate to the tab where the content was found.
+After installing the extension, you can use it by clicking on the Kusto Finder icon in the Edge toolbar or using the Alt+S shortcut. Enter your search term in the input box and click the search button. The extension will search for the text in your open tabs and display the results in a list. Click on a result to navigate to the tab where the content was found (Navigation not implemented yet).
 
 ## Testing
 
-Kusto Finder has been tested in the latest version of Edge. If you encounter any issues, please report them in the repository.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue in the repository.
+Kusto Finder has been tested in the latest version of Edge and is still in development.
 
 ## License
 
