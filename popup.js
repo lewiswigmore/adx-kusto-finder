@@ -18,14 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   });
-
   // Add 'keyup' event listener for the search input box
   searchQuery.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
       searchButton.click();
     }
   });
-
   // Set focus on the search input
   searchQuery.focus();
 });
@@ -36,27 +34,22 @@ function performSearch(searchTerm) {
   highlighted.forEach((el) => {
     el.classList.remove('highlight');
   });
-
   // Split the searchTerm into individual words
   const searchWords = searchTerm.split(' ');
-
   // Search for each word separately
   let totalFound = 0;
   searchWords.forEach(word => {
     const textNodes = Array.from(document.body.querySelectorAll('*'))
       .flatMap(el => Array.from(el.childNodes))
       .filter(n => n.nodeType === 3 && n.textContent.toLowerCase().includes(word.toLowerCase()));
-
     // Highlight the found text
     textNodes.forEach(node => {
       const newNode = document.createElement('span');
       newNode.innerHTML = node.textContent.replace(new RegExp(word, 'gi'), match => `<mark class="highlight">${match}</mark>`);
       node.parentNode.replaceChild(newNode, node);
     });
-
     totalFound += textNodes.length;
   });
-
   return { found: totalFound > 0, count: totalFound };
 }
 
