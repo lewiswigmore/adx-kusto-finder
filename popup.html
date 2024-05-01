@@ -7,49 +7,74 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .card {
+      padding: 20px;
+      width: 300px;
+      max-width: 100%;
+      text-align: center;
+      background: none;
     }
 
     h1 {
       color: #333;
       text-align: center;
-      margin-top: 25px;
+      margin-top: 0;
       margin-bottom: 25px;
-      font-size: 0.75rem;
+      font-size: 1rem;
     }
 
     #search-query {
-      width: 300px;
-      padding: 10px;
-      border: none;
+      width: 100%;
+      margin: auto;
+      padding: 10px 0 10px 0;
+      border: 0.1px solid #000000; 
+      background-color: #fff; 
       border-radius: 5px;
-      margin: 20px auto;
-      display: block;
+      margin-bottom: 10px;
+      position: relative;
+      text-align: center; 
     }
 
     #search-button {
-      background-color: #fff;
-      color: #5e5e5e;
+      background-color: #007bff;
+      color: #fff;
       border: none;
       border-radius: 5px;
-      padding: 10px 20px;
+      margin-top: 10px;
+      padding: 10px;
       cursor: pointer;
-      display: block;
-      margin: 0 auto;
+      width: 50%;
+    }
+
+    #search-button:hover {
+      background-color: #0056b3;
+    }
+
+    #search-button:hover {
+      filter: brightness(90%);
+      animation: pulse 0.5s;
+    }
+
+    #search-results {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Kusto Finder</h1>
-  <input type="text" id="search-query" placeholder="Enter search term...">
-  <button id="search-button">Search</button>
-  <ul id="search-results"></ul>
+  <div class="card">
+    <h1>Kusto Finder</h1>
+    <input type="text" id="search-query" placeholder="Enter search term...">
+    <button id="search-button">Search</button>
+    <ul id="search-results"></ul>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

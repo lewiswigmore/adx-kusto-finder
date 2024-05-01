@@ -11,10 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
           target: {tabId: activeTab.id},
           func: performSearch,
           args: [searchTerm]
-        }, (injectionResults) => {
-          // Handle search results
-          // Perhaps by calling a function similar to displaySearchResults()
-        });
+        }, handleSearchResults);
       });
     }
   });
@@ -53,3 +50,19 @@ function performSearch(searchTerm) {
   return { found: totalFound > 0, count: totalFound };
 }
 
+function handleSearchResults(injectionResults) {
+  // Clear any existing search results
+  const searchResults = document.getElementById('search-results');
+  if (searchResults) {
+    searchResults.innerHTML = '';
+  } else {
+    console.error('Element with id "search-results" not found');
+    return;
+  }
+  // Add a list item for each search result
+  injectionResults.forEach(result => {
+    const li = document.createElement('li');
+    li.textContent = `Found ${result.result.count} occurrences of "${result.result.searchTerm}"`;
+    searchResults.appendChild(li);
+  });
+}
