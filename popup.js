@@ -59,3 +59,4 @@ function performSearch(searchTerm) {
 
   return { found: totalFound > 0, count: totalFound };
 }
+
