@@ -46,7 +46,8 @@ function performSearch(searchTerm) {
     textNodes.forEach(node => {
       const newNode = document.createElement('span');
       newNode.innerHTML = node.textContent.replace(new RegExp(word, 'gi'), match => {
-        results.push(match);
+        const context = node.parentElement;
+        results.push({match: match, context: context});
         return `<mark class="highlight">${match}</mark>`;
       });
       node.parentNode.replaceChild(newNode, node);
@@ -68,9 +69,34 @@ function handleSearchResults(injectionResults) {
   injectionResults.forEach(result => {
     result.result.results.forEach(occurrence => {
       const li = document.createElement('li');
-      li.textContent = `Found occurrence of "${result.result.searchTerm}": ${occurrence}`;
+      li.textContent = `Found occurrence of "${result.result.searchTerm}": ${occurrence.match} in ${occurrence.context}`;
       searchResults.appendChild(li);
     });
   });
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// Added functions to find parent elements with specific classes or ids//
+/////////////////////////////////////////////////////////////////////////
+function findParentWithClass(node, className) {
+  let parent = node.parentNode;
+  while (parent) {
+    if (parent.classList.contains(className)) {
+      return parent;
+    }
+    parent = parent.parentNode;
+  }
+  return null; // Return null if no parent with the specified class is found
+}
+function findParentWithId(node, id) {
+  let parent = node.parentNode;
+  while (parent) {
+    if (parent.id === id) {
+      return parent;
+    }
+    parent = parent.parentNode;
+  }
+  return null; // Return null if no parent with the specified id is found
 }
 
