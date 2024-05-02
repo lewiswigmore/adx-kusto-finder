@@ -26,28 +26,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function performSearch(searchTerm) {
-  // Clear any existing highlights
+  // Revert all previously highlighted text back to normal
   const highlighted = document.querySelectorAll('.highlight');
   highlighted.forEach((el) => {
-    el.classList.remove('highlight');
+    // Create a new text node with the same content as the highlighted element
+    const textNode = document.createTextNode(el.textContent);
+    // Replace the highlighted element with the new text node
+    el.parentNode.replaceChild(textNode, el);
   });
   // Split the searchTerm into individual words
   const searchWords = searchTerm.split(' ');
   // Search for each word separately
-  let totalFound = 0;
+  let results = [];
   searchWords.forEach(word => {
     const textNodes = Array.from(document.body.querySelectorAll('*'))
       .flatMap(el => Array.from(el.childNodes))
       .filter(n => n.nodeType === 3 && n.textContent.toLowerCase().includes(word.toLowerCase()));
-    // Highlight the found text
+    // Highlight the found text and add each occurrence to the results array
     textNodes.forEach(node => {
       const newNode = document.createElement('span');
-      newNode.innerHTML = node.textContent.replace(new RegExp(word, 'gi'), match => `<mark class="highlight">${match}</mark>`);
+      newNode.innerHTML = node.textContent.replace(new RegExp(word, 'gi'), match => {
+        results.push(match);
+        return `<mark class="highlight">${match}</mark>`;
+      });
       node.parentNode.replaceChild(newNode, node);
     });
-    totalFound += textNodes.length;
   });
-  return { found: totalFound > 0, count: totalFound };
+  return { found: results.length > 0, results: results, searchTerm: searchTerm };
 }
 
 function handleSearchResults(injectionResults) {
@@ -61,8 +66,11 @@ function handleSearchResults(injectionResults) {
   }
   // Add a list item for each search result
   injectionResults.forEach(result => {
-    const li = document.createElement('li');
-    li.textContent = `Found ${result.result.count} occurrences of "${result.result.searchTerm}"`;
-    searchResults.appendChild(li);
+    result.result.results.forEach(occurrence => {
+      const li = document.createElement('li');
+      li.textContent = `Found occurrence of "${result.result.searchTerm}": ${occurrence}`;
+      searchResults.appendChild(li);
+    });
   });
 }
+
