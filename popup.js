@@ -52,7 +52,11 @@ function performSearch(searchTerm) {
       node.parentNode.replaceChild(newNode, node);
     });
   });
+<<<<<<< HEAD
   return { found: results.length > 0, results: results, searchTerm: searchTerm};
+=======
+  return { found: results.length > 0, results: results, searchTerm: searchTerm};
+>>>>>>> e3fda391578529918dc3a1beefaba8c7c6ca597f
 }
 
 function handleSearchResults(injectionResults) {
